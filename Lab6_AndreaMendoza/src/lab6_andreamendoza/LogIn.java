@@ -81,20 +81,19 @@ public class LogIn extends javax.swing.JFrame {
                 if (root.getChildAt(0).getChildCount() > 0) {
 
                     if (root.getChildAt(0).getChildAt(i).toString().equals(pe.getCategoría())) {
-                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(1);
-                        DefaultMutableTreeNode c = (DefaultMutableTreeNode) root.getChildAt(1).getChildAt(i);
-                        c.add(new DefaultMutableTreeNode(PMain.get(PMain.size() - 1)));
+                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(0);
+                        DefaultMutableTreeNode c = (DefaultMutableTreeNode) root.getChildAt(0).getChildAt(i);
+                        c.add(new DefaultMutableTreeNode(pe.getName()));
                     } else {
-                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(1);
+                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(0);
                         DefaultMutableTreeNode n = new DefaultMutableTreeNode(pe.getCategoría());
                         DefaultMutableTreeNode x = new DefaultMutableTreeNode(pe.getName());
                         n.add(x);
                         p.add(n);
                         root.add(p);
                     }
-
                 } else {
-                    DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(1);
+                    DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(0);
                     DefaultMutableTreeNode n = new DefaultMutableTreeNode(pe.getCategoría());
                     DefaultMutableTreeNode x = new DefaultMutableTreeNode(pe.getName());
                     n.add(x);
@@ -105,37 +104,39 @@ public class LogIn extends javax.swing.JFrame {
                 netflix.setModel(m);
             }
         }
-
+        
         for (int i = 0; i < root.getChildCount(); i++) {
             for (Serie se : SMain) {
-                if (root.getChildAt(0).getChildCount() > 0) {
-                    if (root.getChildAt(0).getChildAt(i).toString().equals(se.getCategoría())) {
-                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(0);
-                        DefaultMutableTreeNode c = (DefaultMutableTreeNode) root.getChildAt(0).getChildAt(i);
+                if (root.getChildAt(1).getChildCount() > 0) {
+                    if (root.getChildAt(1).getChildAt(i).toString().equals(se.getCategoría())) {
+                        DefaultMutableTreeNode c = (DefaultMutableTreeNode) root.getChildAt(1).getChildAt(i);
                         c.add(new DefaultMutableTreeNode(se.getName()));
                     } else {
-                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(0);
+                        DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(1);
                         DefaultMutableTreeNode n = new DefaultMutableTreeNode(se.getCategoría());
                         DefaultMutableTreeNode x = new DefaultMutableTreeNode(se.getName());
                         n.add(x);
                         p.add(n);
                         root.add(p);
                     }
+
                 } else {
-                    DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(0);
+                    DefaultMutableTreeNode p = (DefaultMutableTreeNode) root.getChildAt(1);
                     DefaultMutableTreeNode n = new DefaultMutableTreeNode(se.getCategoría());
                     DefaultMutableTreeNode x = new DefaultMutableTreeNode(se.getName());
                     n.add(x);
                     p.add(n);
                     root.add(p);
                 }
+                m.reload();
+                netflix.setModel(m);
             }
-            m.reload();
-            netflix.setModel(m);
+
         }
+
     }
 
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
